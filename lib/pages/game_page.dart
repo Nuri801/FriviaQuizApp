@@ -21,12 +21,12 @@ class GamePage extends StatelessWidget {
       //   elevation: 0,
       // ),
       body: SafeArea(
-        child: gameUI(),
+        child: gameUI(context),
       ),
     );
   }
 
-  Widget gameUI() {
+  Widget gameUI(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 42),
       height: deviceHeight,
@@ -41,7 +41,7 @@ class GamePage extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  returnButton(),
+                  returnButton(context),
                   const SizedBox(
                     height: 55,
                     width: 30,
@@ -70,10 +70,10 @@ class GamePage extends StatelessWidget {
     );
   }
 
-  Widget returnButton() {
+  Widget returnButton(BuildContext context) {
     return IconButton(
         onPressed: () {
-          Get.to(() => WelcomePage());
+          _dialogBuilder(context);
         },
         icon: const Icon(
           Icons.arrow_back_ios_new,
@@ -103,7 +103,7 @@ class GamePage extends StatelessWidget {
     return CustomButton(
       height: 100,
       width: deviceWidth * 0.8,
-      buttonText: 'true',
+      buttonText: 'True',
       buttonTextColor: kThemeColor,
       buttonColor: kTrueColor,
       onPressed: () {},
@@ -115,7 +115,7 @@ class GamePage extends StatelessWidget {
     return CustomButton(
       height: 100,
       width: deviceWidth * 0.8,
-      buttonText: 'false',
+      buttonText: 'False',
       buttonTextColor: kThemeColor,
       buttonColor: kFalseColor,
       onPressed: () {},
@@ -123,10 +123,59 @@ class GamePage extends StatelessWidget {
     );
   }
 
-  // void exitSure() {
-  //   showDialog(context: context, builder: builder)
-  // }
-
-
-  
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: kPopUpColor,
+          title: const Text(
+            textAlign: TextAlign.center,
+            'Sure wanna exit?',
+            style: kHeader1TextStyle,
+          ),
+          content: const Text(
+            textAlign: TextAlign.center,
+            'Not the end yet...',
+            style: kHeader2TextStyle,
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CustomButton(
+                    height: 50,
+                    width: 80,
+                    buttonText: 'No',
+                    buttonTextColor: kThemeColor,
+                    buttonColor: kTrueColor,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    fontSize: 20,
+                  ),
+                  CustomButton(
+                    height: 50,
+                    width: 80,
+                    buttonText: 'Exit',
+                    buttonTextColor: kThemeColor,
+                    buttonColor: kFalseColor,
+                    onPressed: () {
+                      Get.to(() => WelcomePage());
+                    },
+                    fontSize: 20,
+                  )
+                ],
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
 }

@@ -18,3 +18,14 @@ const kTrueColor = Color.fromRGBO(149, 205, 65, 0.4);
 
 const kFalseColor = Color.fromRGBO(234, 92, 43, 0.5);
 
+const kPopUpColor = Color.fromRGBO(57, 81, 68, 0.9);
+
+const kHeader1TextStyle = TextStyle(
+  fontSize: 35,
+  color: kThemeColor,
+);
+
+const kHeader2TextStyle = TextStyle(
+  fontSize: 28,
+  color: kThemeColor,
+);
