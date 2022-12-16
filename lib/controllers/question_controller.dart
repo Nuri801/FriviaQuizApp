@@ -16,7 +16,7 @@ class QuestionController extends GetxController {
       'http://opentdb.com/api.php',
       queryParameters: {
         // 'category': 10,
-        'amount': 3,
+        'amount': 10,
         'type': 'boolean',
         'difficulty': 'easy',
       },
@@ -24,7 +24,7 @@ class QuestionController extends GetxController {
     // print(response);
     var data = jsonDecode(response.toString(),);
     questions = data["results"];
-    // print(questions);
+    print(questions);
     // print('working');
     update();
   }

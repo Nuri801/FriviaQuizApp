@@ -114,14 +114,16 @@ class GamePage extends StatelessWidget {
             future: questionController.getQuestionFromAPI(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return Text(
-                  textAlign: TextAlign.center,
-                  questionController.getCurrentQuestionText(),
-                  style: const TextStyle(
-                    fontSize: 38,
-                    color: kThemeColor,
-                  ),
-                );
+                return GetBuilder<QuestionController>(builder: (_){
+                  return Text(
+                    textAlign: TextAlign.center,
+                    questionController.getCurrentQuestionText(),
+                    style: const TextStyle(
+                      fontSize: 38,
+                      color: kThemeColor,
+                    ),
+                  );
+                });
               } else {
                 return const Center(
                   child: CircularProgressIndicator(),
