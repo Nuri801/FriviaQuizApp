@@ -4,12 +4,13 @@ import 'package:frivia/assets/reusable_widgets/custom_button.dart';
 import 'package:frivia/controllers/level_controller.dart';
 import 'package:frivia/pages/game_page.dart';
 import 'package:get/get.dart';
+import '../controllers/question_controller.dart';
 
 class WelcomePage extends StatelessWidget {
   late double deviceHeight;
   late double deviceWidth;
 
-  LevelController controller = Get.put(LevelController());
+  LevelController levelController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +65,10 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           Text(
-            controller.showLevel(controller.levelNum),
+            levelController.showLevel(levelController.levelNum),
             style: TextStyle(
                 fontSize: 30,
-                color: controller.levelColors[controller.levelNum.toInt() - 1]),
+                color: levelController.levelColors[levelController.levelNum.toInt() - 1]),
           ),
         ],
       );
@@ -77,15 +78,15 @@ class WelcomePage extends StatelessWidget {
   Widget levelSlider() {
     return GetBuilder<LevelController>(builder: (_) {
       return Slider(
-        activeColor: controller.levelColors[controller.levelNum.toInt() - 1],
+        activeColor: levelController.levelColors[levelController.levelNum.toInt() - 1],
         min: 1,
         max: 3,
-        value: controller.levelNum,
+        value: levelController.levelNum,
         onChanged: (newValue) {
-          controller.setLevel(newValue);
+          levelController.setLevel(newValue);
         },
         divisions: 2,
-        label: controller.showLevel(controller.levelNum),
+        label: levelController.showLevel(levelController.levelNum),
       );
     });
   }

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:frivia/assets/colors/constants.dart';
 import 'package:frivia/assets/reusable_widgets/custom_button.dart';
+import 'package:frivia/controllers/question_controller.dart';
 import 'package:frivia/pages/welcome_page.dart';
 import 'package:get/get.dart';
 
 class GamePage extends StatelessWidget {
   late double deviceHeight;
+
   late double deviceWidth;
+
+  QuestionController questionController = Get.find();
 
   WelcomePage welcomePage = WelcomePage();
 
   @override
   Widget build(BuildContext context) {
+    // questionController.getQuestionFromAPI();
+
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar: AppBar(
-      //   foregroundColor: kScaffoldColor,
-      //   backgroundColor: kScaffoldColor,
-      //   elevation: 0,
-      // ),
       body: SafeArea(
         child: gameUI(context),
       ),
@@ -72,29 +73,61 @@ class GamePage extends StatelessWidget {
 
   Widget returnButton(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          _dialogBuilder(context);
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          color: kThemeColor,
-          size: 30,
-        ));
+      onPressed: () {
+        _dialogBuilder(context);
+      },
+      icon: const Icon(
+        Icons.arrow_back_ios_new,
+        color: kThemeColor,
+        size: 30,
+      ),
+    );
   }
 
+  // Widget questionText() {
+  //   return FutureBuilder(
+  //       future: questionController.getQuestionFromAPI(),
+  //       builder: (context, snapshot) {
+  //         if (snapshot.connectionState == ConnectionState.done) {
+  //           return Text(
+  //             questionController.getCurrentQuestionText(),
+  //             style: const TextStyle(
+  //               fontSize: 40,
+  //               color: kThemeColor,
+  //             ),
+  //           );
+  //         } else {
+  //           return const Center(
+  //             child: CircularProgressIndicator(),
+  //           );
+  //         }
+  //       });
+  // }
+
   Widget questionText() {
+    //Use a future builder and circular progress indicator in order to wait for the API to get the questions.
     return Container(
       alignment: Alignment.center,
       height: deviceHeight * 0.45,
       child: SingleChildScrollView(
-        child: Text(
-          'There is more plastic in the ocean than fish ',
-          style: TextStyle(
-            fontSize: 40,
-            color: kThemeColor,
-          ),
-          textAlign: TextAlign.center,
-        ),
+        child: FutureBuilder(
+            future: questionController.getQuestionFromAPI(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Text(
+                  textAlign: TextAlign.center,
+                  questionController.getCurrentQuestionText(),
+                  style: const TextStyle(
+                    fontSize: 38,
+                    color: kThemeColor,
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            })
       ),
     );
   }
@@ -106,7 +139,9 @@ class GamePage extends StatelessWidget {
       buttonText: 'True',
       buttonTextColor: kThemeColor,
       buttonColor: kTrueColor,
-      onPressed: () {},
+      onPressed: () {
+        questionController.nextQuestion();
+      },
       fontSize: 45,
     );
   }
@@ -169,7 +204,7 @@ class GamePage extends StatelessWidget {
                       Get.to(() => WelcomePage());
                     },
                     fontSize: 20,
-                  )
+                  ),
                 ],
               ),
             )

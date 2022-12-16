@@ -12,12 +12,10 @@ class LevelController extends GetxController {
 
   void setLevel(double sliderLevel) {
     levelNum = sliderLevel.toDouble();
-    print(levelNum);
     update();
   }
 
   String showLevel (double levelNum) {
     return levelTexts[levelNum.toInt()];
   }
-
 }

@@ -9,7 +9,6 @@ const kMediumColor = Color.fromRGBO(149, 205, 65, 0.8);
 
 const kHardColor = Color.fromRGBO(234, 92, 43, 0.8);
 
-// const kFriviaColor = Color.fromRGBO(69, 98, 104, 1);
 const kThemeColor = Color.fromRGBO(208, 232, 242, 1);
 
 const kBrandColor = Color.fromRGBO(69, 98, 104, 1);
