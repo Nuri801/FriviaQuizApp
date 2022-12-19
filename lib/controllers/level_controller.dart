@@ -12,6 +12,7 @@ class LevelController extends GetxController {
 
   void setLevel(double sliderLevel) {
     levelNum = sliderLevel.toDouble();
+
     update();
   }
 

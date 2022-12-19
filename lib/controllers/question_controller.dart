@@ -3,9 +3,17 @@ import 'package:get/get.dart' hide Response;
 import 'package:dio/dio.dart';
 import 'package:html_unescape/html_unescape.dart';
 
+import 'level_controller.dart';
+
 class QuestionController extends GetxController {
 
-  int questionNumber = 1;
+  LevelController levelController = Get.find();
+
+  int correctAnswers = 0;
+
+  int questionNumber = 0;
+
+  int questionCount = 5;
 
   final Dio _dio = Dio();
 
@@ -15,31 +23,58 @@ class QuestionController extends GetxController {
     Response response = await _dio.get(
       'http://opentdb.com/api.php',
       queryParameters: {
-        // 'category': 10,
-        'amount': 10,
+        'amount': questionCount,
         'type': 'boolean',
-        'difficulty': 'easy',
+        'difficulty': levelController.showLevel(levelController.levelNum),
       },
     );
-    // print(response);
+
     var data = jsonDecode(response.toString(),);
     questions = data["results"];
     print(questions);
-    // print('working');
     update();
   }
 
   String getCurrentQuestionText() {
     var unescape = HtmlUnescape();
     var question = unescape.convert(questions![questionNumber]["question"]);
-    // print(question);
     return question;
   }
 
   void nextQuestion() {
-    questionNumber++;
-    print(questionNumber);
-    update();
+    if (isGameEnd() == true) {
+      // correctAnswers = 0;
+      // questionNumber = 0;
+      update();
+    } else {
+      questionNumber++;
+      update();
+    }
+
+  }
+
+  bool checkAnswer(String answer) {
+    if (questions![questionNumber]["correct_answer"] == answer) {
+      print('correct answer');
+      correctAnswers++;
+      return true;
+    } else {
+      print('incorrect answer');
+      return false;
+    }
+  }
+
+  bool isGameEnd() {
+    if (questionNumber == questionCount-1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void refreshGame() {
+    questionNumber = 0;
+    correctAnswers = 0;
   }
 
 }

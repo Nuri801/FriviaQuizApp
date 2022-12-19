@@ -11,6 +11,7 @@ class WelcomePage extends StatelessWidget {
   late double deviceWidth;
 
   LevelController levelController = Get.find();
+  QuestionController questionController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +54,29 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
+  // Widget numberOfQuestions() {
+  //   return Row(
+  //     children: [
+  //       const Text(
+  //         'how many questions: ',
+  //         style: TextStyle(
+  //           fontSize: 30,
+  //           color: kThemeColor,
+  //         ),
+  //       ),
+  //       Container(
+  //         child: Text(questionController.questionCount),
+  //       )
+  //     ],
+  //   );
+  // }
+
   Widget levelText() {
     return GetBuilder<LevelController>(builder: (_) {
       return Column(
         children: [
           const Text(
-            "Level: ",
+            "Level :",
             style: TextStyle(
               fontSize: 30,
               color: kThemeColor,
@@ -68,7 +86,8 @@ class WelcomePage extends StatelessWidget {
             levelController.showLevel(levelController.levelNum),
             style: TextStyle(
                 fontSize: 30,
-                color: levelController.levelColors[levelController.levelNum.toInt() - 1]),
+                color: levelController
+                    .levelColors[levelController.levelNum.toInt() - 1]),
           ),
         ],
       );
@@ -78,7 +97,8 @@ class WelcomePage extends StatelessWidget {
   Widget levelSlider() {
     return GetBuilder<LevelController>(builder: (_) {
       return Slider(
-        activeColor: levelController.levelColors[levelController.levelNum.toInt() - 1],
+        activeColor:
+            levelController.levelColors[levelController.levelNum.toInt() - 1],
         min: 1,
         max: 3,
         value: levelController.levelNum,
