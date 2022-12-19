@@ -39,6 +39,7 @@ dependencies:
   get:
   dio: ^4.0.6
   html_unescape: ^2.0.0
+  flutter_spinbox: ^0.11.0
 
 dev_dependencies:
   flutter_test:

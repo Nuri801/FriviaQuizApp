@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frivia/assets/colors/constants.dart';
 import 'package:frivia/assets/reusable_widgets/custom_button.dart';
+import 'package:frivia/controllers/level_controller.dart';
 import 'package:frivia/controllers/question_controller.dart';
 import 'package:frivia/pages/welcome_page.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class GamePage extends StatelessWidget {
   late double deviceWidth;
 
   QuestionController questionController = Get.find();
+  LevelController levelController = Get.find();
 
   WelcomePage welcomePage = WelcomePage();
 
@@ -50,9 +52,29 @@ class GamePage extends StatelessWidget {
                 ],
               ),
               welcomePage.levelText(),
-              const SizedBox(
-                height: 30,
-                width: 30,
+              Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: GetBuilder<QuestionController>(
+                      builder: (_) {
+                        return Text(
+                          '${questionController.questionNumber + 1}/${questionController.questionCount}',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: levelController.levelColors[
+                                levelController.levelNum.toInt() - 1],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                    width: 40,
+                  ),
+                ],
               ),
             ],
           ),
@@ -148,7 +170,6 @@ class GamePage extends StatelessWidget {
   }
 
   void trueButtonPressed(BuildContext context) async {
-
     showSnackBar(context, 'True');
 
     await Future.delayed(Duration(milliseconds: 500));
@@ -159,7 +180,6 @@ class GamePage extends StatelessWidget {
   }
 
   void falseButtonPressed(BuildContext context) async {
-
     showSnackBar(context, 'False');
 
     await Future.delayed(Duration(milliseconds: 500));
@@ -291,7 +311,7 @@ class GamePage extends StatelessWidget {
           backgroundColor: kPopUpColor,
           title: const Text(
             textAlign: TextAlign.center,
-            'The End..',
+            'The End...',
             style: kHeader1TextStyle,
           ),
           content: Text(

@@ -62,6 +62,7 @@ class QuestionController extends GetxController {
     }
   }
 
+
   bool isGameEnd() {
     if (questionNumber == questionCount-1) {
       return true;
@@ -73,6 +74,19 @@ class QuestionController extends GetxController {
   void refreshGame() {
     questionNumber = 0;
     correctAnswers = 0;
+    questionCount = 5;
+
+    update();
   }
 
+  void setQuestionCount(String plusMinus) {
+    if (questionCount < 9 && plusMinus == '+') {
+      questionCount ++;
+      update();
+    }
+    if (questionCount > 3 && plusMinus == '-') {
+      questionCount --;
+      update();
+    }
+  }
 }

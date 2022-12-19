@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:frivia/assets/colors/constants.dart';
 import 'package:frivia/assets/reusable_widgets/custom_button.dart';
 import 'package:frivia/controllers/level_controller.dart';
 import 'package:frivia/pages/game_page.dart';
 import 'package:get/get.dart';
+import '../assets/reusable_widgets/set_number_button.dart';
 import '../controllers/question_controller.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -36,6 +39,7 @@ class WelcomePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           gameName(),
+          howManyQuestions(),
           levelText(),
           levelSlider(),
           startButton(),
@@ -51,6 +55,59 @@ class WelcomePage extends StatelessWidget {
         fontSize: 85,
         color: kThemeColor,
       ),
+    );
+  }
+
+  Widget howManyQuestions() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          '# of Qs ?',
+          style: TextStyle(
+            fontSize: 28,
+            color: kThemeColor,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SetNumberButton(
+              height: 50,
+              width: 60,
+              buttonText: '-',
+              buttonTextColor: kThemeColor,
+              buttonColor: kBrandColor,
+              onPressed: () {
+                questionController.setQuestionCount('-');
+              },
+              fontSize: 25,
+            ),
+            GetBuilder<QuestionController>(builder: (_) {
+              return Text(
+                '${questionController.questionCount}',
+                style: kHeader1TextStyle,
+              );
+            }),
+            SetNumberButton(
+              height: 50,
+              width: 60,
+              buttonText: '+',
+              buttonTextColor: kThemeColor,
+              buttonColor: kBrandColor,
+              onPressed: () {
+                questionController.setQuestionCount('+');
+              },
+              fontSize: 25,
+            ),
+          ],
+        ),
+      ],
     );
   }
 
