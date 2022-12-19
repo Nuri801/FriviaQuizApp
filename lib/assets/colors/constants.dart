@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 const kScaffoldColor = Color.fromRGBO(57, 81, 68, 0.7);
 
-// const kEasyColor = Color.fromRGBO(247, 247, 232, 0.9);
-
 const kEasyColor = Color.fromRGBO(255, 211, 105, 0.9);
 
 const kMediumColor = Color.fromRGBO(149, 205, 65, 0.9);

@@ -54,44 +54,29 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
-  // Widget numberOfQuestions() {
-  //   return Row(
-  //     children: [
-  //       const Text(
-  //         'how many questions: ',
-  //         style: TextStyle(
-  //           fontSize: 30,
-  //           color: kThemeColor,
-  //         ),
-  //       ),
-  //       Container(
-  //         child: Text(questionController.questionCount),
-  //       )
-  //     ],
-  //   );
-  // }
-
   Widget levelText() {
-    return GetBuilder<LevelController>(builder: (_) {
-      return Column(
-        children: [
-          const Text(
-            "Level :",
-            style: TextStyle(
-              fontSize: 30,
-              color: kThemeColor,
-            ),
-          ),
-          Text(
-            levelController.showLevel(levelController.levelNum),
-            style: TextStyle(
+    return GetBuilder<LevelController>(
+      builder: (_) {
+        return Column(
+          children: [
+            const Text(
+              "Level :",
+              style: TextStyle(
                 fontSize: 30,
-                color: levelController
-                    .levelColors[levelController.levelNum.toInt() - 1]),
-          ),
-        ],
-      );
-    });
+                color: kThemeColor,
+              ),
+            ),
+            Text(
+              levelController.showLevel(levelController.levelNum),
+              style: TextStyle(
+                  fontSize: 30,
+                  color: levelController
+                      .levelColors[levelController.levelNum.toInt() - 1]),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget levelSlider() {
@@ -112,18 +97,20 @@ class WelcomePage extends StatelessWidget {
   }
 
   Widget startButton() {
-    return GetBuilder<LevelController>(builder: (_) {
-      return CustomButton(
-          height: 100,
-          width: deviceWidth * 0.8,
-          buttonText: 'Start',
-          buttonTextColor: kThemeColor,
-          // buttonTextColor: controller.levelColors[controller.levelNum.toInt()-1],
-          buttonColor: kBrandColor,
-          onPressed: () {
-            Get.to(() => GamePage());
-          },
-          fontSize: 55);
-    });
+    return GetBuilder<LevelController>(
+      builder: (_) {
+        return CustomButton(
+            height: 100,
+            width: deviceWidth * 0.8,
+            buttonText: 'Start',
+            buttonTextColor: kThemeColor,
+            // buttonTextColor: controller.levelColors[controller.levelNum.toInt()-1],
+            buttonColor: kBrandColor,
+            onPressed: () {
+              Get.to(() => GamePage());
+            },
+            fontSize: 55);
+      },
+    );
   }
 }
