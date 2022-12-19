@@ -104,7 +104,6 @@ class WelcomePage extends StatelessWidget {
             width: deviceWidth * 0.8,
             buttonText: 'Start',
             buttonTextColor: kThemeColor,
-            // buttonTextColor: controller.levelColors[controller.levelNum.toInt()-1],
             buttonColor: kBrandColor,
             onPressed: () {
               Get.to(() => GamePage());

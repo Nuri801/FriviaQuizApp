@@ -43,8 +43,6 @@ class QuestionController extends GetxController {
 
   void nextQuestion() {
     if (isGameEnd() == true) {
-      // correctAnswers = 0;
-      // questionNumber = 0;
       update();
     } else {
       questionNumber++;
