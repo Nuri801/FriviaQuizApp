@@ -63,7 +63,7 @@ class WelcomePage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          '# of Qs ?',
+          'How many questions ?',
           style: TextStyle(
             fontSize: 28,
             color: kThemeColor,
@@ -74,7 +74,7 @@ class WelcomePage extends StatelessWidget {
           height: 15,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: [
             SetNumberButton(
@@ -89,9 +89,15 @@ class WelcomePage extends StatelessWidget {
               fontSize: 25,
             ),
             GetBuilder<QuestionController>(builder: (_) {
-              return Text(
-                '${questionController.questionCount}',
-                style: kHeader1TextStyle,
+              return SizedBox(
+                height: 40,
+                width: 40,
+                child: Center(
+                  child: Text(
+                    '${questionController.questionCount}',
+                    style: kHeader1TextStyle,
+                  ),
+                ),
               );
             }),
             SetNumberButton(
