@@ -221,7 +221,6 @@ class GamePage extends StatelessWidget {
                     buttonTextColor: kThemeColor,
                     buttonColor: kTrueColor,
                     onPressed: () {
-                      questionController.refreshGame();
                       Navigator.pop(context);
                     },
                     fontSize: 20,
@@ -233,6 +232,7 @@ class GamePage extends StatelessWidget {
                     buttonTextColor: kThemeColor,
                     buttonColor: kFalseColor,
                     onPressed: () {
+                      questionController.refreshGame();
                       Get.to(() => WelcomePage());
                     },
                     fontSize: 20,
