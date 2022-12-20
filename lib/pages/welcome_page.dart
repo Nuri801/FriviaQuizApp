@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:frivia/assets/colors/constants.dart';
 import 'package:frivia/assets/reusable_widgets/custom_button.dart';
@@ -62,7 +60,7 @@ class WelcomePage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
+        const Text(
           'How many questions ?',
           style: TextStyle(
             fontSize: 28,
@@ -70,7 +68,7 @@ class WelcomePage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
@@ -143,20 +141,22 @@ class WelcomePage extends StatelessWidget {
   }
 
   Widget levelSlider() {
-    return GetBuilder<LevelController>(builder: (_) {
-      return Slider(
-        activeColor:
-            levelController.levelColors[levelController.levelNum.toInt() - 1],
-        min: 1,
-        max: 3,
-        value: levelController.levelNum,
-        onChanged: (newValue) {
-          levelController.setLevel(newValue);
-        },
-        divisions: 2,
-        label: levelController.showLevel(levelController.levelNum),
-      );
-    });
+    return GetBuilder<LevelController>(
+      builder: (_) {
+        return Slider(
+          activeColor:
+              levelController.levelColors[levelController.levelNum.toInt() - 1],
+          min: 1,
+          max: 3,
+          value: levelController.levelNum,
+          onChanged: (newValue) {
+            levelController.setLevel(newValue);
+          },
+          divisions: 2,
+          label: levelController.showLevel(levelController.levelNum),
+        );
+      },
+    );
   }
 
   Widget startButton() {
