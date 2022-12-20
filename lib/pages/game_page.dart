@@ -55,23 +55,25 @@ class GamePage extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: GetBuilder<QuestionController>(
-                      builder: (_) {
-                        return Text(
-                          '${questionController.questionNumber + 1}/${questionController.questionCount}',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: levelController.levelColors[
-                                levelController.levelNum.toInt() - 1],
-                          ),
-                        );
-                      },
+                    height: 50,
+                    width: 60,
+                    child: Center(
+                      child: GetBuilder<QuestionController>(
+                        builder: (_) {
+                          return Text(
+                            '${questionController.questionNumber + 1}/${questionController.questionCount}',
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: levelController.levelColors[
+                                  levelController.levelNum.toInt() - 1],
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 60,
                     width: 40,
                   ),
                 ],
@@ -263,7 +265,7 @@ class GamePage extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: deviceWidth * 0.3),
         child: Icon(
           answer ? Icons.check_circle : Icons.cancel_sharp,
-          size: 100,
+          size: 70,
           color: answer ? kTrueCheckColor : kFalseCheckColor,
         ),
       ),

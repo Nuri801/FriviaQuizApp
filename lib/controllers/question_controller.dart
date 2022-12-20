@@ -31,7 +31,6 @@ class QuestionController extends GetxController {
 
     var data = jsonDecode(response.toString(),);
     questions = data["results"];
-    print(questions);
     update();
   }
 
@@ -48,20 +47,16 @@ class QuestionController extends GetxController {
       questionNumber++;
       update();
     }
-
   }
 
   bool checkAnswer(String answer) {
     if (questions![questionNumber]["correct_answer"] == answer) {
-      print('correct answer');
       correctAnswers++;
       return true;
     } else {
-      print('incorrect answer');
       return false;
     }
   }
-
 
   bool isGameEnd() {
     if (questionNumber == questionCount-1) {
@@ -75,7 +70,6 @@ class QuestionController extends GetxController {
     questionNumber = 0;
     correctAnswers = 0;
     questionCount = 5;
-
     update();
   }
 
