@@ -176,3 +176,61 @@ class WelcomePage extends StatelessWidget {
     );
   }
 }
+
+// class ControlButton2 extends StatelessWidget {
+//   ControlButton2({
+//     required this.buttonColor,
+//     required this.buttonIcon,
+//     required this.buttonText,
+//     required this.onPress,
+//     this.iconColor = Colors.white,
+//   });
+//
+//   final Color buttonColor;
+//   final IconData buttonIcon;
+//   final String buttonText;
+//   final void Function()? onPress;
+//   Color iconColor;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(5),
+//       child: Container(
+//         height: 70,
+//         width: 70,
+//         child: ElevatedButton(
+//           style: ElevatedButton.styleFrom(
+//             backgroundColor: buttonColor,
+//             disabledBackgroundColor: Colors.grey,
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//           ),
+//           onPressed: onPress,
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(3),
+//                 child: Icon(
+//                   buttonIcon,
+//                   color: iconColor,
+//                   size: 27,
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.all(3),
+//                 child: Text(
+//                   textAlign: TextAlign.center,
+//                   buttonText,
+//                   style: kControlButtonTextStyle,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
