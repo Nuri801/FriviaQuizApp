@@ -115,8 +115,6 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
-
-
   Widget levelText() {
     return GetBuilder<LevelController>(
       builder: (_) {
