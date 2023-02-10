@@ -10,7 +10,6 @@ class QuestionController extends GetxController {
 
   int correctAnswers = 0;
 
-
   int questionNumber = 0;
 
   int questionCount = 5;
