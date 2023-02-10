@@ -10,7 +10,6 @@ class GamePage extends StatelessWidget {
   GamePage({super.key});
 
   late double deviceHeight;
-
   late double deviceWidth;
 
   QuestionController questionController = Get.find();
