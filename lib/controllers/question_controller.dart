@@ -9,9 +9,7 @@ class QuestionController extends GetxController {
   LevelController levelController = Get.find();
 
   int correctAnswers = 0;
-
   int questionNumber = 0;
-
   int questionCount = 5;
 
   final Dio _dio = Dio();
