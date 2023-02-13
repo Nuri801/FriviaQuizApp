@@ -31,8 +31,6 @@ class QuestionController extends GetxController {
     update();
   }
 
-
-
   String getCurrentQuestionText() {
     var unescape = HtmlUnescape();
     var question = unescape.convert(questions![questionNumber]["question"]);
@@ -71,7 +69,6 @@ class QuestionController extends GetxController {
     questionCount = 5;
     update();
   }
-
 
   void setQuestionCount(String plusMinus) {
     if (questionCount < 9 && plusMinus == '+') {
