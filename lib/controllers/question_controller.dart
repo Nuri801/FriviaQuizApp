@@ -31,6 +31,8 @@ class QuestionController extends GetxController {
     update();
   }
 
+
+
   String getCurrentQuestionText() {
     var unescape = HtmlUnescape();
     var question = unescape.convert(questions![questionNumber]["question"]);
