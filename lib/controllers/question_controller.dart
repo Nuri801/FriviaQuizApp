@@ -70,6 +70,7 @@ class QuestionController extends GetxController {
     update();
   }
 
+
   void setQuestionCount(String plusMinus) {
     if (questionCount < 9 && plusMinus == '+') {
       questionCount ++;
