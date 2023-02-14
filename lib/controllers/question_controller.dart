@@ -43,7 +43,6 @@ class QuestionController extends GetxController {
     } else {
       questionNumber++;
       update();
-
     }
   }
 
@@ -81,6 +80,5 @@ class QuestionController extends GetxController {
       update();
     }
   }
-
 }
 
