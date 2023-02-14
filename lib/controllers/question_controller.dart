@@ -28,6 +28,7 @@ class QuestionController extends GetxController {
 
     var data = jsonDecode(response.toString(),);
     questions = data["results"];
+
     update();
   }
 
